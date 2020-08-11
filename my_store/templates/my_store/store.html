@@ -1,0 +1,44 @@
+{% extends "my_store/base.html" %}
+{% load my_store_tags %}
+{% block content %}
+  <div id="store-body">
+    <div class="row mx-lg-2">
+      <div class="col-lg-8 col-12">
+        {% for category in categories %}
+          <div class="container mb-5" id="{{ category }}-cont">
+            <div class="row panel-header">
+              <div class="col-12">
+                <h1 class="py-2 px-3">{{ category }}</h1>
+              </div>
+            </div>
+
+            <div class="row panel-body py-3 px-5">
+              <div class="container-fluid">
+                {% for item in prod|cat_filter:category %}
+                  {% if forloop.counter0|divisibleby:4 %} <div class="row"> {% endif %}
+                    <div class="my-2 col-sm-12 col-md-3 text-center">
+                      <div class="item-viewer px-3">
+                        <h3 class="item-title">{{ item.title }}</h3>
+                        {% if item.available %}
+                          <h5 class="item-is-avail">{{ item.available|is_available }}</h5>
+                        {% else %}
+                          <h5 class="item-not-avail">{{ item.available|is_available }}</h5>
+                        {% endif %}
+                      </div>
+                    </div>
+                  {% if forloop.counter|divisibleby:4 or forloop.last %} </div> {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="col-4 news_panel text-center" id='SidePanel'>
+        <p>
+          jskjdkasjdjk
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

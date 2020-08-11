@@ -1,0 +1,88 @@
+{% load static %}
+{% load my_store_tags %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <script type = "text/JavaScript">
+            function AutoRefresh( t ) {
+               setTimeout("location.reload(true);", t);
+            }
+    </script>
+
+    {% if title %}
+      <title>The Villa Store - {{ title }}</title>
+    {% else %}
+      <title>The Villa Store</title>
+    {% endif %}
+
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark px-0 sticky-top">
+      <div class="container-fluid">
+        <a href="#" class="navbar-brand pl-3 pb-2">The Villa Store</a>
+
+        <div class="mr-4" id="my-buttons">
+          <button class="btn btn-dark d-md-none" data-toggle="collapse" data-target="#navbarSearch" type="button" name="Searchbutton">
+            <span class="fa fa-search"></span>
+          </button>
+          <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarResponsive" type="button" name="button">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+
+        <div class="collapse navbar-collapse change-bgColor py-3" id="navbarSearch">
+          <form class="form-inline px-2">
+            <input id="search_field" class="form-control" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
+          </form>
+        </div>
+
+        <div class="collapse navbar-collapse change-bgColor" id="navbarResponsive">
+          <ul class="navbar-nav ml-md-auto px-3">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">News&Updates</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Store</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Log Out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </nav>
+
+    <!-- Viewer -->
+    <div class="container-fluid viewer-body m-0 px-3 py-5">
+      {% block content %}{% endblock %}
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+    			  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+    			  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{% static 'js/main.js' %}">
+
+    </script>
+  </body>
+</html>
