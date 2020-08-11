@@ -2,10 +2,11 @@ from django.db import models
 
 class Products(models.Model):
     categories = (
-        ('Seafood', 'Seafood'),
-        ('Vegetable', 'Vegetable'),
         ('Fruits', 'Fruits'),
         ('Meat', 'Meat'),
+        ('Seafood', 'Seafood'),
+        ('Vegetable', 'Vegetable'),
+
     )
 
     title = models.CharField(max_length=250)

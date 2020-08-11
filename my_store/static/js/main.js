@@ -1,7 +1,7 @@
 $(document).ready(function (){
 
     function refresh(){
-      console.log('Refreshing');
+      console.log('Refreshing 1');
       $.ajax({
         url: "",
         success: function (data){
@@ -9,5 +9,6 @@ $(document).ready(function (){
         }
       });
     }
-    setInterval(refresh, 10000)
+    var seconds = 60;
+    setInterval(refresh, seconds*1000)
 });
