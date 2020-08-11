@@ -1,3 +1,7 @@
+html{
+  scroll-behavior: smooth;
+}
+
 .show-border{
   border: 2px solid green;
 }
@@ -52,6 +56,28 @@
   margin-right: -73px;
 }
 
+#my_products{
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+  border-top: 3px solid #d6d6d6;
+}
+
+.sp-head{
+  background-color: #0244bf;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+}
+
+.yow{
+  border-top: 3px solid #ffffff;
+  border-bottom: 3px solid #ffffff;
+  color: white;
+}
+
+.amnt-md{
+  font-size: 1rem;
+}
+
 /* XSmall */
 @media (max-width: 575px) {
 
@@ -68,6 +94,10 @@
 @media (max-width: 991px) {
   #SidePanel{
     display: none;
+  }
+
+  .amnt-md{
+    font-size: 0.985rem;
   }
 }
 

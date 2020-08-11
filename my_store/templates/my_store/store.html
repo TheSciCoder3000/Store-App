@@ -5,9 +5,13 @@
     <div class="row mx-lg-2">
       <div class="col-lg-8 col-12">
         <div id="additional" class="container-fluid">
-          <small>
-            Want to Order? <a href="{% url 'login' %}">Log In now</a>
-          </small>
+          {% if not user.is_authenticated %}
+            <small>
+              Want to Order? <a href="{% url 'login' %}">Log In now</a>
+              </small>
+            {% endif %}
+
+          <a href="#Seafood-cont">Seafood</a>
         </div>
 
         <div id="my_products">
@@ -32,11 +36,11 @@
                             <h5 class="item-not-avail">{{ item.available|is_available }}</h5>
                             {% endif %}
                           <div class="row" id="amount-left">
-                            <div class="col-4">
-                              <p class="h6">Amount Left: </p>
+                            <div class="col-4 col-md-12 col-lg-4 amnt-md">
+                              <p>Amount Left: </p>
                             </div>
 
-                            <div class="col-8 py-1">
+                            <div class="col-8 col-md-12 col-lg-8 py-1">
                               <p>{{ item.item_count }}</p>
                             </div>
                           </div>

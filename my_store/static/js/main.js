@@ -9,6 +9,6 @@ $(document).ready(function (){
         }
       });
     }
-    var seconds = 60;
+    var seconds = 14400;
     setInterval(refresh, seconds*1000)
 });
