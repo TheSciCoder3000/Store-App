@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+from django.contrib.auth.models import User
 
 class Products(models.Model):
     categories = (
@@ -21,4 +23,18 @@ class Products(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['title']
+        ordering = ['product_category', 'title']
+
+
+class Orders(models.Model):
+    Person = models.ForeignKey(User, on_delete=models.PROTECT)
+    address = models.TextField(null=True)
+    number = models.IntegerField(null=True)
+    time_ordered = models.DateTimeField(default=timezone.now)
+    item_list = [it.title for it in Products.objects.all()]
+    for item in item_list:
+        vars()[item] = models.BooleanField()
+        vars()[item+'_counter'] = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return str(self.Person)

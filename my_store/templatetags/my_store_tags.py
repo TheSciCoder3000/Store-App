@@ -12,3 +12,11 @@ def is_available(value):
         return 'Available'
     else:
         return 'Not Available'
+
+@register.simple_tag
+def order_field(form, item_field):
+    return form.__getitem__(item_field)
+
+@register.simple_tag
+def order_counter(form, item_field):
+    return form.__getitem__(item_field+'_counter')
