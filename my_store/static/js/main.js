@@ -1,3 +1,7 @@
+const hideOrderCount = document.querySelector('.check');
+const orderSettings = document.querySelector('.order-settings');
+orderSettings.style.display = "none";
+
 $(document).ready(function (){
 
     function refresh(){
@@ -11,4 +15,14 @@ $(document).ready(function (){
     }
     var seconds = 14400;
     setInterval(refresh, seconds*1000)
+});
+
+$('#prod_table').DataTable();
+
+hideOrderCount.addEventListener('change', function(event){
+  if(hideOrderCount.checked){
+    orderSettings.style.display = "block";
+  }else {
+    orderSettings.style.display = "none";
+  }
 });

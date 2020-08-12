@@ -21,4 +21,4 @@ class Products(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['title']
+        ordering = ['product_category','title']
