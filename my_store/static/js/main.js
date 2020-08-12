@@ -1,7 +1,3 @@
-const hideOrderCount = document.querySelector('.check');
-const orderSettings = document.querySelector('.order-settings');
-orderSettings.style.display = "none";
-
 $(document).ready(function (){
 
     function refresh(){
@@ -19,10 +15,13 @@ $(document).ready(function (){
 
 $('#prod_table').DataTable();
 
-hideOrderCount.addEventListener('change', function(event){
-  if(hideOrderCount.checked){
-    orderSettings.style.display = "block";
+function hide_me(this_item){
+  var item_checkbox = document.querySelector("#"+ this_item +"-checkbox");
+  var item_settings = document.querySelector("#"+ this_item +"-order");
+
+  if (item_checkbox.checked){
+    item_settings.style.display = "block";
   }else {
-    orderSettings.style.display = "none";
+    item_settings.style.display = "none";
   }
-});
+}

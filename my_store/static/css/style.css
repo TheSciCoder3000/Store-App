@@ -6,6 +6,10 @@ html{
   border: 2px solid green;
 }
 
+.order-settings{
+  display: none;
+}
+
 .btn-dark{
   border: 1px solid #525151;
 }
@@ -50,6 +54,14 @@ html{
 
 .item-not-avail{
   background-color: #ff4545;
+}
+
+.num-form-cont{
+  width: 6rem;
+}
+
+.number-form{
+  width: 4rem;
 }
 
 #search_field{

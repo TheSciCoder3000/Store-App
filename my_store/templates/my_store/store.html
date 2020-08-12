@@ -36,12 +36,12 @@
                     <div class="container-fluid">
                       <div class="row">
                         <div class="col-12 col-md-4 checkbox-cont p-0">
-                          <input class="my_checkbox" type="checkbox">
+                          <input id="{{ item }}-checkbox" type="checkbox" onclick="hide_me('{{ item }}')">
                         </div>
 
-                        <div class="col-12 col-md-8 px-1 order-settings">
-                          <form class="">
-                            <input type="number">
+                        <div id="{{ item }}-order" class="col-12 col-md-8 px-1 order-settings">
+                          <form class="num-form-cont">
+                            <input class="number-form" type="number" step=".01">
                           </form>
                         </div>
                       </div>
