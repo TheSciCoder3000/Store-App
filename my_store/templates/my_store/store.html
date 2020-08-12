@@ -10,53 +10,63 @@
               Want to Order? <a href="{% url 'login' %}">Log In now</a>
               </small>
             {% endif %}
-
-          <a href="#Seafood-cont">Seafood</a>
         </div>
 
-
-
-        <div class="container" id="my_products">
-          <table class="table table-striped table-bordered" id="prod_table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Item</th>
-                <th>Availability</th>
-                <th>Price</th>
-                <th>Amount Left</th>
-                <th>Category</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {% for item in prod %}
+        <form class="" method="post"> {% csrf_token %}
+          <div class="container" id="my_products">
+            <table class="table table-striped table-bordered" id="prod_table">
+              <thead>
                 <tr>
-                  <td>
-                    <div class="container-fluid">
-                      <div class="row">
-                        <div class="col-12 col-md-4 checkbox-cont p-0">
-                          <input id="{{ item }}-checkbox" type="checkbox" onclick="hide_me('{{ item }}')">
-                        </div>
-
-                        <div id="{{ item }}-order" class="col-12 col-md-8 px-1 order-settings">
-                          <form class="num-form-cont">
-                            <input class="number-form" type="number" step=".01">
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>{{ item.title }}</td>
-                  <td>{{ item.available }}</td>
-                  <td>{{ item.price }}</td>
-                  <td>{{ item.item_count }}</td>
-                  <td>{{ item.product_category }}</td>
+                  {% if user.is_authenticated %}
+                    <th></th>
+                    {% endif %}
+                  <th>Item</th>
+                  <th>Availability</th>
+                  <th>Price</th>
+                  <th>Amount Left</th>
+                  <th>Category</th>
                 </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+
+              <tbody>
+                {% for item in prod %}
+                  <tr>
+                    {% if user.is_authenticated %}
+                      <td>
+                        <div class="container-fluid">
+                          <div class="row">
+                            <div class="col-12 col-md-4 checkbox-cont p-0">
+
+                              {% order_field form item.title %}
+                            </div>
+
+                            <div id="{{ item }}-order" class="col-12 col-md-8 px-1 order-settings">
+                                {% order_counter form item.title %}
+                            </div>
+                          </div>
+                        </div>
+                        </td>
+                      {% endif %}
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.available }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.item_count }}</td>
+                    <td>{{ item.product_category }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          {% if user.is_authenticated %}
+            <div class="">
+              {% order_field form 'number' %}
+              {% order_field form 'address' %}
+            </div>
+
+          <button class="btn" type="submit">Order</button>
+            {% endif %}
+        </form>
       </div>
 
       <div class="col-4 news_panel text-center p-0" id='SidePanel'>

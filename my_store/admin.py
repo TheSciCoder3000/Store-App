@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Products
+from .models import Products, Orders
 
 
 def make_avail(modeladmin, request, queryset):
@@ -24,3 +24,5 @@ class The_Prod_Cat(admin.ModelAdmin):
         return obj.price
 
 admin.site.register(Products, The_Prod_Cat)
+
+admin.site.register(Orders)

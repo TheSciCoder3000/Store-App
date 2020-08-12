@@ -1,0 +1,30 @@
+{% extends "my_store/base.html" %}
+{% load my_store_tags %}
+{% block content %}
+  <div class="container-fluid">
+    <h1>Admin: {{ user.username }}</h1>
+
+    <div class="container-fluid">
+      <table class="table table-striped table-bordered" id="admin-table">
+        <thead>
+          <tr>
+            <th>Orders</th>
+            <th>Date & Time</th>
+            <th>Item Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for order in Orders %}
+            <tr>
+              <td>{{ order.Person }}</td>
+              <td>{{ order.time_ordered }}</td>
+              <td></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+{% endblock content %}
