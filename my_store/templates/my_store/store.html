@@ -23,6 +23,7 @@
                   <th>Item</th>
                   <th>Availability</th>
                   <th>Price</th>
+                  <th>Per</th>
                   <th>Amount Left</th>
                   <th>Category</th>
                 </tr>
@@ -50,6 +51,7 @@
                     <td>{{ item.title }}</td>
                     <td>{{ item.available }}</td>
                     <td id="{{ item.title }}-price">{{ item.price }}</td>
+                    <td>{{ item.price_per }}</td>
                     <td>{{ item.item_count }}</td>
                     <td>{{ item.product_category }}</td>
                   </tr>
