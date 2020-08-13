@@ -27,6 +27,7 @@ class Products(models.Model):
 
     class Meta:
         ordering = ['product_category', 'title']
+        verbose_name_plural = "Products"
 
 class Orders(models.Model):
     Person = models.ForeignKey(User, on_delete=models.PROTECT)
@@ -40,3 +41,6 @@ class Orders(models.Model):
 
     def __str__(self):
         return str(self.Person)
+
+    class Meta:
+        verbose_name_plural = "Orders"
