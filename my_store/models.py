@@ -44,3 +44,19 @@ class Orders(models.Model):
 
     class Meta:
         verbose_name_plural = "Orders"
+
+class Request(models.Model):
+    Person = models.ForeignKey(User, on_delete=models.PROTECT)
+    address = models.TextField(null=True)
+    number = models.IntegerField(null=True)
+    time_ordered = models.DateTimeField(default=timezone.now)
+    item_list = [it.title for it in Products.objects.all()]
+    for item in item_list:
+        vars()[item] = models.BooleanField(default=False)
+        vars()[item+'_counter'] = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return str(self.Person)
+
+    class Meta:
+        verbose_name_plural = "Orders"
