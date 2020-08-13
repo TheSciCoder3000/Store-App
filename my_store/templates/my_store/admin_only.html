@@ -16,7 +16,9 @@
         <tbody>
           {% for order in Orders %}
             <tr>
-              <td>{{ order.Person }}</td>
+              <td>
+                <a href="{% url 'admin-store-detail' order.id %}">{{ order.Person }}</a>
+              </td>
               <td>{{ order.time_ordered }}</td>
               <td></td>
             </tr>
