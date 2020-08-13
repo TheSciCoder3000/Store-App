@@ -23,6 +23,7 @@ class The_Prod_Cat(admin.ModelAdmin):
     def Price(self, obj):
         return obj.price
 
+
 admin.site.register(Products, The_Prod_Cat)
 
 admin.site.register(Orders)

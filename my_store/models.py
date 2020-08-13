@@ -18,13 +18,15 @@ class Products(models.Model):
     price_per = models.CharField(max_length=50, default='kg')
     product_category = models.CharField(max_length=100, default='Seafood', choices=categories)
     last_Updated = models.DateTimeField(auto_now=True)
+    item_thresh = models.IntegerField(blank=True, null=True)
+    discount = models.IntegerField(blank=True, null=True)
+    image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.title
 
     class Meta:
         ordering = ['product_category', 'title']
-
 
 class Orders(models.Model):
     Person = models.ForeignKey(User, on_delete=models.PROTECT)
@@ -33,7 +35,7 @@ class Orders(models.Model):
     time_ordered = models.DateTimeField(default=timezone.now)
     item_list = [it.title for it in Products.objects.all()]
     for item in item_list:
-        vars()[item] = models.BooleanField()
+        vars()[item] = models.BooleanField(default=False)
         vars()[item+'_counter'] = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
