@@ -19,7 +19,7 @@ class Products(models.Model):
     product_category = models.CharField(max_length=100, default='Seafood', choices=categories)
     last_Updated = models.DateTimeField(auto_now=True)
     item_thresh = models.FloatField(blank=True, null=True)
-    discount = models.FloatField(blank=True, null=True)
+    discount = models.FloatField(default=0.1)
     image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
