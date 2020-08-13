@@ -20,3 +20,13 @@ def order_field(form, item_field):
 @register.simple_tag
 def order_counter(form, item_field):
     return form.__getitem__(item_field+'_counter')
+
+@register.filter
+def is_order_avail(item, order):
+    item_state = getattr(order, item.title)
+    return item_state
+
+@register.simple_tag
+def get_order_counter(item, order):
+    item_counter = getattr(order, item.title+'_counter')
+    return item_counter

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
+from django.views.generic import DetailView
 from django.contrib.admin.views.decorators import staff_member_required
 from .forms import OrderForm
 from .models import Products, Orders
@@ -35,3 +35,13 @@ def to_admin(request):
         'Orders': Orders.objects.all()
     }
     return render(request, 'my_store/admin_only.html', context)
+
+class OrderDetails(DetailView):
+    model = Orders
+    template_name = 'my_store/order_details.html'
+    context_object_name = 'orders'
+
+    def get_context_data(self, **kwargs):
+        context = super(OrderDetails, self).get_context_data(**kwargs)
+        context['items'] = Products.objects.all()
+        return context
