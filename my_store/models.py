@@ -13,13 +13,13 @@ class Products(models.Model):
 
     title = models.CharField(max_length=250)
     available = models.BooleanField()
-    item_count = models.IntegerField()
-    price = models.IntegerField(default=0)
+    item_count = models.FloatField()
+    price = models.FloatField(default=0)
     price_per = models.CharField(max_length=50, default='kg')
     product_category = models.CharField(max_length=100, default='Seafood', choices=categories)
     last_Updated = models.DateTimeField(auto_now=True)
-    item_thresh = models.IntegerField(blank=True, null=True)
-    discount = models.IntegerField(blank=True, null=True)
+    item_thresh = models.FloatField(blank=True, null=True)
+    discount = models.FloatField(blank=True, null=True)
     image = models.ImageField(null=True, blank=True)
 
     def __str__(self):

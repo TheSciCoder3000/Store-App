@@ -19,8 +19,7 @@ html{
 }
 
 .news_panel{
-  background-color: #afafaf;
-  border: 2px solid #cfcfcf;
+  background-color: #e8e8e8
 }
 
 .inner-viewer{
@@ -61,7 +60,7 @@ html{
 }
 
 .number-form{
-  width: 2em;
+  width: 100%;
 }
 
 #search_field{
@@ -133,6 +132,12 @@ html{
   border-top: 3px solid #ffffff;
   border-bottom: 3px solid #ffffff;
   color: white;
+}
+
+.sp-body{
+  background-color: #e8e8e8;
+  border-bottom-right-radius: 18px;
+  border-bottom-left-radius: 18px;
 }
 
 .amnt-md{
