@@ -8,18 +8,18 @@
       <table class="table table-striped table-bordered" id="admin-table">
         <thead>
           <tr>
-            <th>Orders</th>
+            <th>{{ data_name }}</th>
             <th>Date & Time</th>
             <th>Item Count</th>
           </tr>
         </thead>
         <tbody>
-          {% for order in Orders %}
+          {% for td in table_data %}
             <tr>
               <td>
-                <a href="{% url 'admin-store-detail' order.id %}">{{ order.Person }}</a>
+                <a href="{% url 'admin-store-detail' td.id %}">{{ td.Person }}</a>
               </td>
-              <td>{{ order.time_ordered }}</td>
+              <td>{{ td.time_ordered }}</td>
               <td></td>
             </tr>
           {% endfor %}

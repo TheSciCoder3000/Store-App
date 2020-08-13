@@ -1,38 +1,59 @@
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView
 from django.contrib.admin.views.decorators import staff_member_required
-from .forms import OrderForm
-from .models import Products, Orders
+from .forms import OrderForm, RequestForm
+from .models import Products, Orders, Request
+from pytz import timezone
+import datetime
 
+
+day_indx = datetime.datetime.now(timezone('Hongkong')).weekday()
+sell_day = 5
 
 def home(request):
     return render(request, 'my_store/home.html')
 
 def store(request):
     if request.method == 'POST':
-        form = OrderForm(request.POST)
+        if day_indx == sell_day:
+            form = OrderForm(request.POST)
+        else:
+            form = RequestForm(request.POST)
         instance = form.save(commit=False)
         instance.Person = request.user
         if form.is_valid():
             form.save()
             return redirect('store-store')
     else:
-        form = OrderForm()
+        if day_indx == sell_day:
+            form = OrderForm()
+            btn_title = 'Order'
+        else:
+            form = RequestForm()
+            btn_title = 'Request'
 
     context = {
         'title': 'Store',
         'prod': Products.objects.all(),
         'form': form,
         'prod_model': Products,
+        'btn': btn_title,
     }
 
     return render(request, 'my_store/store.html', context)
 
 @staff_member_required
 def to_admin(request):
+    if day_indx == sell_day:
+        tdata = Orders.objects.all()
+        dname = 'Orders'
+    else:
+        tdata = Request.objects.all()
+        dname = 'Requests'
     context = {
         'items': Products.objects.all(),
-        'Orders': Orders.objects.all()
+        'data_name': dname,
+        'table_data': tdata
     }
     return render(request, 'my_store/admin_only.html', context)
 

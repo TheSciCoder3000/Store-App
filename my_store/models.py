@@ -59,4 +59,4 @@ class Request(models.Model):
         return str(self.Person)
 
     class Meta:
-        verbose_name_plural = "Orders"
+        verbose_name_plural = "Requests"
