@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Products, Orders, Request
+from .models import Products, Orders, Request, HomeImage
 
 
 def make_avail(modeladmin, request, queryset):
@@ -25,5 +25,6 @@ class The_Prod_Cat(admin.ModelAdmin):
 
 
 admin.site.register(Products, The_Prod_Cat)
+admin.site.register(HomeImage)
 admin.site.register(Request)
 admin.site.register(Orders)

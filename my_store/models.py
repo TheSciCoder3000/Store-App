@@ -60,3 +60,10 @@ class Request(models.Model):
 
     class Meta:
         verbose_name_plural = "Requests"
+
+class HomeImage(models.Model):
+    image_name = models.CharField(max_length=25)
+    my_image = models.ImageField()
+
+    def __str__(self):
+        return self.image_name

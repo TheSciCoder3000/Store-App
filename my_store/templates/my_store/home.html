@@ -1,19 +1,27 @@
 {% extends "my_store/base.html" %}
 {% load static %}
 {% block content %}
+  <!-- Image Slider -->
   <div id="slides" class="carousel slide" data-ride="carousel">
     <ul class="carousel-indicators">
       <li data-target="#slides" data-slide-to="0" class="active"></li>
     </ul>
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="{% static 'img/background.jpg' %}" >
-        <div class="carousel-caption">
-          <h1 class="welcome-message">Welcome to The Villa Store</h1>
-          <p class="h5">Check out our products or Log In to order down bellow</p>
-          <button type="button" class="btn btn-outline-light btn-lg">Store</button>
+      {% for image in home_images %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <img src="{{ image.my_image.url }}" >
+          {% if forloop.first %}
+            <div class="carousel-caption">
+              <h1 class="welcome-message">Welcome to The Villa Store</h1>
+              <p class="h5">Check out our products or Log In to order down bellow</p>
+              <button type="button" class="btn btn-outline-light btn-lg mx-1 my-2">Store</button>
+              <button type="button" class="btn btn-primary btn-lg signup-btn mx-1 my-2">Sign Up</button>
+            </div>
+            {% endif %}
         </div>
-      </div>
+        {% endfor %}
     </div>
   </div>
+
+
 {% endblock content %}

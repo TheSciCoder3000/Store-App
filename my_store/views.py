@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import DetailView
 from django.contrib.admin.views.decorators import staff_member_required
 from .forms import OrderForm, RequestForm
-from .models import Products, Orders, Request
+from .models import Products, Orders, Request, HomeImage
 from pytz import timezone
 import datetime
 
@@ -11,7 +11,7 @@ day_indx = datetime.datetime.now(timezone('Hongkong')).weekday()
 sell_day = 5
 
 def home(request):
-    return render(request, 'my_store/home.html')
+    return render(request, 'my_store/home.html', {'home_images': HomeImage.objects.all()})
 
 def store(request):
     if request.method == 'POST':
