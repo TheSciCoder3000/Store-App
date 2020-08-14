@@ -1,22 +1,19 @@
 {% extends "my_store/base.html" %}
-
+{% load static %}
 {% block content %}
-  <div class="row">
-    <div class="">
-
+  <div id="slides" class="carousel slide" data-ride="carousel">
+    <ul class="carousel-indicators">
+      <li data-target="#slides" data-slide-to="0" class="active"></li>
+    </ul>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'img/background.jpg' %}" >
+        <div class="carousel-caption">
+          <h1 class="welcome-message">Welcome to The Villa Store</h1>
+          <p class="h5">Check out our products or Log In to order down bellow</p>
+          <button type="button" class="btn btn-outline-light btn-lg">Store</button>
+        </div>
+      </div>
     </div>
   </div>
-  <h1>Store Home
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam interdum faucibus ipsum, in vestibulum mi gravida sed. Quisque aliquet ipsum sed ante gravida, mollis tincidunt tortor fermentum. Vivamus blandit quam in lorem interdum, id tincidunt purus scelerisque. Vestibulum bibendum magna ut massa cursus gravida. Nam sed nibh arcu. Suspendisse commodo tortor vel risus facilisis bibendum. Mauris mattis semper enim vel ultricies. Nulla interdum eros in arcu pulvinar, a maximus est luctus. Aenean risus est, accumsan et sapien sit amet, sodales pharetra mauris. Donec at nisl in metus vehicula sagittis. Nullam ligula dolor, molestie sed hendrerit id, rhoncus eget mauris. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-
-Praesent feugiat, lacus ut hendrerit aliquet, ex tortor gravida felis, eu tempus ante nibh sit amet leo. Vivamus eleifend lobortis nibh sed consequat. Nullam elementum tristique tellus. Vivamus accumsan risus ut odio molestie, at pharetra ligula ornare. Morbi porta ornare turpis, non sodales elit volutpat eu. Sed eu orci fringilla, auctor nisi in, porta odio. Maecenas sagittis magna vel ex blandit, vel mollis arcu scelerisque. Suspendisse at enim id metus pharetra mattis. Duis nec magna non mi mattis semper vel in nulla. Nam dui dolor, condimentum id sapien at, porta bibendum ex. Duis non dolor sollicitudin, egestas felis eu, egestas magna.
-
-Ut finibus mauris diam, tincidunt ornare magna commodo ut. Morbi quis pretium ipsum. Ut quis enim enim. Nam vitae viverra leo, ut lacinia dolor. Suspendisse potenti. Maecenas orci purus, rutrum nec ultrices eget, semper sed nibh. Sed venenatis sed orci eget venenatis.
-
-Morbi eget ligula imperdiet, vestibulum tellus a, lobortis nulla. Ut id sodales justo. Quisque et lectus sit amet dui vulputate laoreet a vitae risus. Donec auctor, ante sit amet tristique bibendum, mi ipsum sollicitudin leo, non suscipit felis purus in mauris. Etiam eros elit, vestibulum id ex sit amet, efficitur congue urna. Praesent dignissim mauris aliquet nulla posuere, non pulvinar velit consectetur. Nullam auctor luctus pulvinar. Sed sed porttitor libero. Vestibulum faucibus purus tincidunt fringilla scelerisque. Donec et libero a ligula elementum imperdiet a quis diam. In ut imperdiet tortor. Praesent semper tempus tristique. Donec cursus ornare ante, eu pellentesque urna placerat nec. Curabitur porta nunc non ligula vehicula, vestibulum efficitur magna scelerisque.
-
-Nam convallis quam luctus venenatis ullamcorper. Aliquam eu vehicula magna. Proin vitae ligula neque. Nullam vulputate sit amet nulla tempus finibus. Integer non libero maximus, tincidunt neque ac, ultrices est. Ut ornare maximus libero ac dignissim. Phasellus id fermentum nunc. Integer vitae quam neque. Duis risus magna, eleifend et nulla id, efficitur varius nunc. Praesent laoreet venenatis maximus. Proin mollis id tellus quis rhoncus. Sed lobortis sed ante vitae mollis. Duis ultricies ullamcorper fermentum. Pellentesque sagittis, tellus sed scelerisque sodales, nisl quam finibus mauris, in rutrum velit massa nec enim. Sed laoreet diam ac rutrum pellentesque.
-
-  </h1>
 {% endblock content %}

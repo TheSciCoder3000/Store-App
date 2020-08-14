@@ -2,6 +2,11 @@ html{
   scroll-behavior: smooth;
 }
 
+img{
+  height: auto;
+  width: 100%;
+}
+
 .show-border{
   border: 2px solid green;
 }
@@ -144,6 +149,10 @@ html{
   font-size: 1rem;
 }
 
+.welcome-message{
+  font-size: 6rem;
+}
+
 /* XSmall */
 @media (max-width: 575px) {
 
@@ -153,6 +162,12 @@ html{
 @media (max-width: 767px) {
   .change-bgColor{
     background-color: #0f0f0f;
+  }
+  img{
+    width: 200%;
+  }
+  .welcome-message{
+    font-size: 3rem;
   }
 }
 
