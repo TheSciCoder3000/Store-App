@@ -5,6 +5,31 @@ html{
 img{
   height: auto;
   width: 100%;
+  object-fit: cover;
+}
+
+.False-formatting{
+  color: red;
+}
+
+.True-formatting{
+  color: green;
+}
+
+.submitted{
+  display: none;
+  cursor: not-allowed;
+  pointer-events: none;
+  content: "Pls Wait"
+}
+
+.scrollable{
+  max-width: 100%;
+  overflow: scroll;;
+}
+
+.inner-home{
+  max-height: 600px !important;
 }
 
 .show-border{
@@ -88,6 +113,16 @@ img{
   margin-right: 1rem;
 }
 
+#user-table_paginate > span > a{
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+#user-table_paginate > *{
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
 .checkbox-cont{
   display: flex;
   align-items: center;
@@ -154,12 +189,19 @@ img{
 }
 
 .signup-btn{
-  
+
+}
+
+.message-form{
+  width: 100%;
+  height: auto;
 }
 
 /* XSmall */
 @media (max-width: 575px) {
-
+  .inner-home{
+    width: 200%;
+  }
 }
 
 /* Small */

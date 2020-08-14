@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserRegistrationForm
+from my_store.models import Orders, Request
 
 def register(request):
     if request.method == 'POST':
@@ -19,4 +20,8 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    context = {
+        'orders': Orders.objects,
+        'requests': Request.objects
+    }
+    return render(request, 'users/profile.html', context)

@@ -49,34 +49,36 @@
         </div>
 
         <div class="collapse navbar-collapse change-bgColor" id="navbarResponsive">
-          <ul class="navbar-nav ml-md-auto px-3">
-            <li class="nav-item">
-              <a class="nav-link active" href="{% url 'store-home' %}">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'store-store' %}">Store</a>
-            </li>
-            {% if user.is_superuser %}
+          {% with url_name=request.resolver_match.url_name %}
+            <ul class="navbar-nav ml-md-auto px-3">
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'admin-page' %}">Admin</a>
+                <a class="nav-link {% if url_name == 'store-home' %} active {% endif %}" href="{% url 'store-home' %}">Home</a>
               </li>
-              {% endif %}
-            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link {% if url_name == 'store-store' %} active {% endif %}" href="{% url 'store-store' %}">Store</a>
+              </li>
+              {% if user.is_superuser %}
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                  <a class="nav-link {% if url_name == 'admin-page' %} active {% endif %}" href="{% url 'admin-page' %}">Admin</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
-                </li>
-              {% else %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'login' %}">Log In</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'register' %}">Register</a>
-                </li>
-              {% endif %}
-          </ul>
+                {% endif %}
+              {% if user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link {% if url_name == 'profile' %} active {% endif %}" href="{% url 'profile' %}">Profile</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link {% if url_name == 'logout' %} active {% endif %}" href="{% url 'logout' %}">Log Out</a>
+                  </li>
+                {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link {% if url_name == 'login' %} active {% endif %}" href="{% url 'login' %}">Log In</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link {% if url_name == 'register' %} active {% endif %}" href="{% url 'register' %}">Register</a>
+                  </li>
+                {% endif %}
+            </ul>
+            {% endwith %}
         </div>
       </div>
 
@@ -115,7 +117,9 @@
     </script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.js"></script>
     <script src="{% static 'js/main.js' %}">
-
+    </script>
+    <script>
+      
     </script>
   </body>
 </html>

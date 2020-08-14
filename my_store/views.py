@@ -3,6 +3,7 @@ from django.views.generic import DetailView
 from django.contrib.admin.views.decorators import staff_member_required
 from .forms import OrderForm, RequestForm
 from .models import Products, Orders, Request, HomeImage
+from django.http import JsonResponse
 from pytz import timezone
 import datetime
 
@@ -14,6 +15,10 @@ def home(request):
     return render(request, 'my_store/home.html', {'home_images': HomeImage.objects.all()})
 
 def store(request):
+    if request.is_ajax():
+        return JsonResponse({
+            'msg': 'success'
+        })
     if request.method == 'POST':
         if day_indx == sell_day:
             form = OrderForm(request.POST)
@@ -39,7 +44,7 @@ def store(request):
         'prod_model': Products,
         'btn': btn_title,
     }
-
+    print('here')
     return render(request, 'my_store/store.html', context)
 
 @staff_member_required

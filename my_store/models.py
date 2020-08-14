@@ -30,9 +30,10 @@ class Products(models.Model):
         verbose_name_plural = "Products"
 
 class Orders(models.Model):
-    Person = models.ForeignKey(User, on_delete=models.PROTECT)
+    Person = models.ForeignKey(User, on_delete=models.CASCADE)
     address = models.TextField(null=True)
     number = models.IntegerField(null=True)
+    add_message = models.TextField(null=True, blank=True)
     time_ordered = models.DateTimeField(default=timezone.now)
     item_list = [it.title for it in Products.objects.all()]
     for item in item_list:
@@ -46,9 +47,10 @@ class Orders(models.Model):
         verbose_name_plural = "Orders"
 
 class Request(models.Model):
-    Person = models.ForeignKey(User, on_delete=models.PROTECT)
+    Person = models.ForeignKey(User, on_delete=models.CASCADE)
     address = models.TextField(null=True)
     number = models.IntegerField(null=True)
+    add_message = models.TextField(null=True, blank=True)
     time_ordered = models.DateTimeField(default=timezone.now)
     item_list = [it.title for it in Products.objects.all()]
     for item in item_list:

@@ -8,6 +8,9 @@ class OrderForm(ModelForm):
         exclude = ['Person', 'time_ordered',]
         widgets = {
             'address': forms.TextInput(attrs={'placeholder': 'add your Block Lot and Phase HERE'}),
+            'number': forms.NumberInput(attrs={'placeholder': 'Mobile Number'}),
+            'add_message': forms.TextInput(attrs={'placeholder': 'Put any additional request or info here.',
+                                                  'class': 'message-form'})
         }
 
         for item in Products.objects.all():
@@ -27,6 +30,9 @@ class RequestForm(ModelForm):
         exclude = ['Person', 'time_ordered',]
         widgets = {
             'address': forms.TextInput(attrs={'placeholder': 'add your Block Lot and Phase HERE'}),
+            'number': forms.NumberInput(attrs={'placeholder': 'Mobile Number'}),
+            'add_message': forms.TextInput(attrs={'placeholder': 'Put any additional request or info here.',
+                                                  'class': 'message-form'})
         }
 
         for item in Products.objects.all():

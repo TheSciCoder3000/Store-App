@@ -1,5 +1,4 @@
 $(document).ready(function (){
-
     function refresh(){
       console.log('Refreshing 1');
       $.ajax({
@@ -14,6 +13,31 @@ $(document).ready(function (){
 });
 
 $('#prod_table').DataTable();
+$('#user-table').DataTable();
+
+
+
+var use_ajax = true;
+function deactivate_me(btn_id){
+  console.log('start..');
+  if(!$(btn_id).hasClass("submitted")){
+    $(btn_id).addClass("submitted");
+    $.ajax({
+      type: "GET",
+      url: '/store/',
+      dataType: 'json',
+      success: function (data){
+        if (data.msg == 'success'){
+          $(btn_id).removeClass("submitted");
+          console.log('received');
+        }
+      }
+
+    });
+  }
+}
+
+
 
 function hide_me(this_item){
   var item_checkbox = document.querySelector("#"+ this_item +"-checkbox");
@@ -26,6 +50,8 @@ function hide_me(this_item){
     item_settings.style.display = "none";
   }
 }
+
+
 
 function check_price(this_item, item_thresh, item_discount){
   var item_price = document.querySelector("#"+this_item+"-price").innerHTML;
