@@ -5,6 +5,9 @@ html{
 html, body{
   width: 100%;
   height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
 }
 
 #store-body > div{
@@ -47,7 +50,7 @@ hr.light{
 
 .scrollable{
   max-width: 100%;
-  overflow: scroll;;
+  overflow: auto;
 }
 
 
@@ -71,6 +74,7 @@ hr.light{
 
 .viewer-body{
   background-color: #ffffff;
+  min-height: 100vh;
 }
 
 .news_panel{

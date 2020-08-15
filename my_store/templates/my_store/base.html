@@ -58,9 +58,14 @@
                 <a class="nav-link {% if url_name == 'store-store' %} active {% endif %}" href="{% url 'store-store' %}">Store</a>
               </li>
               {% if user.is_superuser %}
-                <li class="nav-item">
-                  <a class="nav-link {% if url_name == 'admin-page' %} active {% endif %}" href="{% url 'admin-page' %}">Admin</a>
-                </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link {% if url_name == 'admin-orders-request' %} active {% endif %} dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Admin
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{% url 'admin-orders-request' %}">Orders & Requests</a>
+                </div>
+              </li>
                 {% endif %}
               {% if user.is_authenticated %}
                   <li class="nav-item">

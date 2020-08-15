@@ -14,6 +14,7 @@ $(document).ready(function (){
 
 $('#prod_table').DataTable();
 $('#user-table').DataTable();
+$('#admin-table').DataTable();
 
 
 

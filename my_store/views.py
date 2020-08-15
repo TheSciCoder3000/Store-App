@@ -9,7 +9,7 @@ import datetime
 
 
 day_indx = datetime.datetime.now(timezone('Hongkong')).weekday()
-sell_day = 5
+sell_day = 4
 
 def home(request):
     return render(request, 'my_store/home.html', {'home_images': HomeImage.objects.all()})
