@@ -7,6 +7,21 @@ html, body{
   height: 100%;
 }
 
+#store-body > div{
+  width: 100vw
+}
+
+footer{
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  color: white;
+  background-color: #2b2b29;
+}
+
+hr.light{
+  background-color: white;
+}
+
 .carousel-inner{
   height: 70vh;
 }
@@ -205,6 +220,31 @@ html, body{
 .message-form{
   width: 100%;
   height: auto;
+}
+
+@media screen and (orientation:portrait){
+  .carousel-item{
+    height: 100%;
+  }
+
+  .carousel-inner img{
+    height: 100%;
+  }
+}
+
+@media screen and (orientation:landscape){
+  .carousel-item{
+    width: 100%;
+  }
+
+  .carousel-inner img{
+    width: 100%;
+  }
+}
+
+.h1{
+    color: white;
+    text-shadow: 3px 3px 6px black;
 }
 
 /* XSmall */

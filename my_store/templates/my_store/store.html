@@ -12,9 +12,9 @@
             {% endif %}
         </div>
 
-        <div class="scrollable">
+        <div class="">
           <form id="my_order_form" method="post"> {% csrf_token %}
-            <div class="container-fluid" id="my_products">
+            <div class="container-fluid scrollable" id="my_products">
               <table class="table table-striped table-bordered" id="prod_table">
                 <thead>
                   <tr>
@@ -73,13 +73,13 @@
                 {% order_field form 'add_message' %}
               </div>
 
-            <button id="submit_ro" onclick="deactivate_me('#submit_ro')" class="btn" type="submit">{{ btn }}</button>
+            <button id="submit_ro" onclick="deactivate_me('#submit_ro')" class="btn mx-5" type="submit">{{ btn }}</button>
               {% endif %}
           </form>
         </div>
       </div>
 
-      <div class="col-4 text-center p-0" id='SidePanel'>
+      <div class="col-lg-4 text-center p-0" id='SidePanel'>
         <div class="sp-head p-3">
           <div class="container-fluid yow py-2">
             <h2>News & Updates</h2>
