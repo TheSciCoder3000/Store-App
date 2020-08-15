@@ -2,10 +2,17 @@ html{
   scroll-behavior: smooth;
 }
 
-img{
-  height: auto;
+html, body{
   width: 100%;
-  object-fit: cover;
+  height: 100%;
+}
+
+.carousel-inner{
+  height: 70vh;
+}
+
+.carousel-inner img{
+  object-fit: contain;
 }
 
 .False-formatting{
@@ -28,8 +35,11 @@ img{
   overflow: scroll;;
 }
 
-.inner-home{
-  max-height: 600px !important;
+
+.carousel-caption{
+  top: 50%;
+  position: absolute;
+  transform: translateY(-50%);
 }
 
 .show-border{
@@ -199,9 +209,6 @@ img{
 
 /* XSmall */
 @media (max-width: 575px) {
-  .inner-home{
-    width: 200%;
-  }
 }
 
 /* Small */
