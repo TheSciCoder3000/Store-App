@@ -10,6 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
     <script type = "text/JavaScript">
@@ -48,36 +49,48 @@
         </div>
 
         <div class="collapse navbar-collapse change-bgColor" id="navbarResponsive">
-          <ul class="navbar-nav ml-md-auto px-3">
-            <li class="nav-item">
-              <a class="nav-link active" href="{% url 'store-home' %}">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'store-store' %}">Store</a>
-            </li>
-            {% if user.is_authenticated %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'profile' %}">Profile</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
-                </li>
-              {% else %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'login' %}">Log In</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'register' %}">Register</a>
-                </li>
-              {% endif %}
-          </ul>
+          {% with url_name=request.resolver_match.url_name %}
+            <ul class="navbar-nav ml-md-auto px-3">
+              <li class="nav-item">
+                <a class="nav-link {% if url_name == 'store-home' %} active {% endif %}" href="{% url 'store-home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if url_name == 'store-store' %} active {% endif %}" href="{% url 'store-store' %}">Store</a>
+              </li>
+              {% if user.is_superuser %}
+              <li class="nav-item dropdown">
+                <a class="nav-link {% if url_name == 'admin-orders-request' %} active {% endif %} dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Admin
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{% url 'admin-orders-request' %}">Orders & Requests</a>
+                </div>
+              </li>
+                {% endif %}
+              {% if user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link {% if url_name == 'profile' %} active {% endif %}" href="{% url 'profile' %}">Profile</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link {% if url_name == 'logout' %} active {% endif %}" href="{% url 'logout' %}">Log Out</a>
+                  </li>
+                {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link {% if url_name == 'login' %} active {% endif %}" href="{% url 'login' %}">Log In</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link {% if url_name == 'register' %} active {% endif %}" href="{% url 'register' %}">Register</a>
+                  </li>
+                {% endif %}
+            </ul>
+            {% endwith %}
         </div>
       </div>
 
     </nav>
 
     <!-- Viewer -->
-    <div class="container-fluid viewer-body m-0 px-3 py-5">
+    <div class="container-fluid viewer-body m-0 p-0">
       {% if messages %}
         {% for message in messages %}
           <div class="alert alert-{{ message.tags }}">
@@ -89,6 +102,35 @@
       {% block content %}{% endblock %}
     </div>
 
+    <!-- Footer -->
+    <footer>
+      <div class="container-fluid padding">
+        <div class="row text-center">
+          <div class="col-md-4">
+            <h3>The Villa Store</h3>
+            <hr class="light">
+            <p></p>
+            <p></p>
+            <p>B6 L2 Ph1</p>
+            <p>Avida Sta. Catalina</p>
+          </div>
+          <div class="col-md-4">
+
+          </div>
+          <div class="col-md-4">
+            <hr class="light">
+            <h5>Our days</h5>
+            <hr class="light">
+            <p>Saturdays</p>
+          </div>
+          <div class="col-12">
+            <hr class="light">
+            <h5>&copy; thevilla.pythonanywhere.com</h5>
+          </div>
+        </div>
+      </div>
+    </footer>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -98,7 +140,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js">
+
+    </script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js">
+
+    </script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js">
+
+    </script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.js"></script>
     <script src="{% static 'js/main.js' %}">
+    </script>
+    <script>
 
     </script>
   </body>

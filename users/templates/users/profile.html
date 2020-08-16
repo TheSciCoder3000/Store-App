@@ -1,5 +1,40 @@
 {% extends "my_store/base.html" %}
 {% load crispy_forms_tags %}
+{% load users_tag %}
 {% block content %}
-  <h1>{{ user.username }}</h1>
+  <div class="m-5">
+    <h1 class="m-0">{{ user.username }}</h1>
+
+    <div class="p-0 m-4">
+      <table class="table table-striped table-bordered" id="user-table">
+        <thead>
+          <tr>
+            <th>Orders and request</th>
+            <th>category</th>
+            <th>Date and time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for order in orders|data_by_user:user %}
+            <tr>
+              <td>
+                <a href="{% url 'user-order-detail' order.id %}">{{ order.Person }}</a>
+              </td>
+              <td>Orders</td>
+              <td>{{ order.time_ordered }}</td>
+            </tr>
+            {% endfor %}
+          {% for request in requests|data_by_user:user %}
+            <tr>
+              <td>
+                <a href="{% url 'user-request-detail' request.id %}">{{ request.Person }}</a>
+              </td>
+              <td>Requests</td>
+              <td>{{ request.time_ordered }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 {% endblock content %}

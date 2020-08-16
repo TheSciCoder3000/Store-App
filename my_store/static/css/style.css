@@ -2,8 +2,70 @@ html{
   scroll-behavior: smooth;
 }
 
+html, body{
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+}
+
+#store-body > div{
+  width: 100vw
+}
+
+footer{
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  color: white;
+  background-color: #2b2b29;
+}
+
+hr.light{
+  background-color: white;
+}
+
+.carousel-inner{
+  height: 70vh;
+}
+
+.carousel-inner img{
+  object-fit: contain;
+}
+
+.False-formatting{
+  color: red;
+}
+
+.True-formatting{
+  color: green;
+}
+
+.submitted{
+  display: none;
+  cursor: not-allowed;
+  pointer-events: none;
+  content: "Pls Wait"
+}
+
+.scrollable{
+  max-width: 100%;
+  overflow: auto;
+}
+
+
+.carousel-caption{
+  top: 50%;
+  position: absolute;
+  transform: translateY(-50%);
+}
+
 .show-border{
   border: 2px solid green;
+}
+
+.order-settings{
+  display: none;
 }
 
 .btn-dark{
@@ -12,11 +74,11 @@ html{
 
 .viewer-body{
   background-color: #ffffff;
+  min-height: 100vh;
 }
 
 .news_panel{
-  background-color: #afafaf;
-  border: 2px solid #cfcfcf;
+  background-color: #e8e8e8
 }
 
 .inner-viewer{
@@ -52,6 +114,14 @@ html{
   background-color: #ff4545;
 }
 
+.num-form-cont{
+  width: 10rem;
+}
+
+.number-form{
+  width: 100%;
+}
+
 #search_field{
   margin-right: -73px;
 }
@@ -60,6 +130,65 @@ html{
   padding-top: 1.5rem;
   margin-top: 1.5rem;
   border-top: 3px solid #d6d6d6;
+}
+
+#prod_table_paginate > span > a{
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+#prod_table_paginate > *{
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+#user-table_paginate > span > a{
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+#user-table_paginate > *{
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.checkbox-cont{
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-cont > input[type="checkbox"]{
+  appearance: none;
+  -webkit-appearance: none;
+  height: 1rem;
+  width: 1rem;
+  background-color: #d5d5d5;
+  border-radius: 0.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkbox-cont > input[type="checkbox"]:after{
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content:  "\f00c";
+  font-size: 0.8rem;
+  color: white;
+  display: none;
+}
+
+.checkbox-cont > input[type="checkbox"]:hover{
+  background-color: #a5a5a5;
+}
+
+.checkbox-cont > input[type="checkbox"]:checked{
+  background-color: #5bcd3e;
+}
+
+.checkbox-cont > input[type="checkbox"]:checked:after{
+  display: block;
 }
 
 .sp-head{
@@ -74,19 +203,68 @@ html{
   color: white;
 }
 
+.sp-body{
+  background-color: #e8e8e8;
+  border-bottom-right-radius: 18px;
+  border-bottom-left-radius: 18px;
+}
+
 .amnt-md{
   font-size: 1rem;
 }
 
+.welcome-message{
+  font-size: 6rem;
+}
+
+.signup-btn{
+
+}
+
+.message-form{
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (orientation:portrait){
+  .carousel-item{
+    height: 100%;
+  }
+
+  .carousel-inner img{
+    height: 100%;
+  }
+}
+
+@media screen and (orientation:landscape){
+  .carousel-item{
+    width: 100%;
+  }
+
+  .carousel-inner img{
+    width: 100%;
+  }
+}
+
+.h1{
+    color: white;
+    text-shadow: 3px 3px 6px black;
+}
+
 /* XSmall */
 @media (max-width: 575px) {
-
 }
 
 /* Small */
 @media (max-width: 767px) {
   .change-bgColor{
     background-color: #0f0f0f;
+  }
+  img{
+    width: 200%;
+  }
+  .welcome-message{
+    font-size: 3rem;
   }
 }
 

@@ -2,7 +2,7 @@
 {% load my_store_tags %}
 {% block content %}
   <div id="store-body">
-    <div class="row mx-lg-2">
+    <div class="row mx-lg-2 my-5">
       <div class="col-lg-8 col-12">
         <div id="additional" class="container-fluid">
           {% if not user.is_authenticated %}
@@ -10,56 +10,83 @@
               Want to Order? <a href="{% url 'login' %}">Log In now</a>
               </small>
             {% endif %}
-
-          <a href="#Seafood-cont">Seafood</a>
         </div>
 
-        <div id="my_products">
-          {% for category in categories %}
-            <div class="container mb-5" id="{{ category }}-cont">
-              <div class="row panel-header">
-                <div class="col-12">
-                  <h1 class="py-2 px-3">{{ category }}</h1>
-                </div>
-              </div>
+        <div class="">
+          <form id="my_order_form" method="post"> {% csrf_token %}
+            <div class="container-fluid scrollable" id="my_products">
+              <table class="table table-striped table-bordered" id="prod_table">
+                <thead>
+                  <tr>
+                    {% if user.is_authenticated %}
+                      <th>LIST          </th>
+                      {% endif %}
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Per</th>
+                    <th>Amount Left</th>
+                    <th>Category</th>
+                  </tr>
+                </thead>
 
-              <div class="row panel-body py-3 px-5">
-                <div class="container-fluid">
-                  {% for item in prod|cat_filter:category %}
-                    {% if forloop.counter0|divisibleby:4 %} <div class="row"> {% endif %}
-                      <div class="my-2 col-sm-12 col-md-3 text-center">
-                        <div class="item-viewer px-3">
-                          <h3 class="item-title">{{ item.title }}</h3>
-                          {% if item.available %}
-                            <h5 class="item-is-avail">{{ item.available|is_available }}</h5>
-                            {% else %}
-                            <h5 class="item-not-avail">{{ item.available|is_available }}</h5>
-                            {% endif %}
-                          <div class="row" id="amount-left">
-                            <div class="col-4 col-md-12 col-lg-4 amnt-md">
-                              <p>Amount Left: </p>
-                            </div>
+                <tbody>
+                  {% for item in prod %}
+                    {% if item.available %}
+                      <tr>
+                      {% if user.is_authenticated %}
+                        <td>
+                          <div class="container-fluid px-2">
+                            <div class="row">
+                              <div class="col-12 col-md-4 checkbox-cont center-block mb-1 m-md-0 px-md-0">
+                                {% order_field form item.title %}
+                              </div>
 
-                            <div class="col-8 col-md-12 col-lg-8 py-1">
-                              <p>{{ item.item_count }}</p>
+                              <div id="{{ item }}-order" class="col-12 col-md-8 px-1 order-settings">
+                                  {% order_counter form item.title %}
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                    {% if forloop.counter|divisibleby:4 or forloop.last %} </div> {% endif %}
+                          </td>
+                        {% endif %}
+                      <td>{{ item.title }}</td>
+                      <td id="{{ item.title }}-price">{{ item.price }}</td>
+                      <td>{{ item.price_per }}</td>
+                      <td>{{ item.item_count }}</td>
+                      <td>{{ item.product_category }}</td>
+                    </tr>
+                    {% endif %}
                   {% endfor %}
-                </div>
-              </div>
+                </tbody>
+              </table>
             </div>
-            {% endfor %}
+
+            {% if user.is_authenticated %}
+              <div class="mx-3 my-2">
+                <h5 class="d-inline">Number: </h5>
+                {% order_field form 'number' %}
+              </div>
+              <div class="mx-3 my-2">
+                <h5 class="d-inline">Address: </h5>
+                {% order_field form 'address' %}
+              </div>
+              <div class="mx-3 my-2">
+                {% order_field form 'add_message' %}
+              </div>
+
+            <button id="submit_ro" onclick="deactivate_me('#submit_ro')" class="btn mx-5" type="submit">{{ btn }}</button>
+              {% endif %}
+          </form>
         </div>
       </div>
 
-      <div class="col-4 news_panel text-center p-0" id='SidePanel'>
+      <div class="col-lg-4 text-center p-0" id='SidePanel'>
         <div class="sp-head p-3">
-          <div class="yow py-2">
+          <div class="container-fluid yow py-2">
             <h2>News & Updates</h2>
           </div>
+        </div>
+        <div class="sp-body p-3">
+          <h3>No News & Updates</h3>
         </div>
       </div>
     </div>
