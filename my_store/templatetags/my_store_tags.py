@@ -1,4 +1,6 @@
 from django import template
+from ..models import *
+from ..forms import OrderItemForms
 
 register = template.Library()
 
@@ -30,3 +32,24 @@ def is_order_avail(item, order):
 def get_order_counter(item, order):
     item_counter = getattr(order, item.title+'_counter')
     return item_counter
+
+@register.simple_tag
+def get_field(my_form, fieldname):
+    return my_form.__getitem__(fieldname)
+
+@register.filter
+def data_by_user(OR):
+    return OR.orderitem_set.all()
+
+@register.filter
+def get_OR_owner(OR):
+    return OR.get_owner()
+
+@register.filter
+def get_items_totals(orderList):
+    items = [x.quantity for x in orderList.orderitem_set.all()]
+    total = sum(items)
+    if total % 1 == 0:
+        return int(total)
+    else:
+        return total

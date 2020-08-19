@@ -1,0 +1,76 @@
+{% extends "my_store/base.html" %}
+{% load users_tag %}
+{% block content %}
+{% load static %}
+<div class="container my-5">
+  <div id="person-info">
+    <h1>{{ orders.Person }}</h1>
+    <div class="container-fluid">
+      <h4>Conatact Number: </h4><p>{{ orders.number }}</p>
+    </div>
+    <div class="container-fluid">
+      <h4>Address</h4>
+      <p>{{ orders.address }}</p>
+    </div>
+    <div class="container-fluid">
+      <h4>Reference Code</h4>
+      <p>{{ orders.ref_code }}</p>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <form id="order-items-form" method="post">{% csrf_token %}
+      <div class="another">
+        {{ formset.management_form }}
+      </div>
+      <div class="scrollable">
+        <table class="table table-striped table-bordered" id="admin-orders-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Amount</th>
+              <th>Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for form, item in formset|zip_list:order_items %}
+                <tr>
+                  <td>{{ item.item }}</td>
+                  <td>
+                    <div class="item-quantity">
+                      {{ item.quantity }}
+                    </div>
+                    <div>
+                      {% for field in form %}
+                      <div class="item-quantity-counter">
+                        {{ field }}
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </td>
+                  <td>{{ item.item.price }}</td>
+                  <td>{{ item|get_item_total }}</td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="hidden" id="update-buttons">
+        <button class="btn btn-success btn-lg mx-3" type="submit">Save</button>
+        <button class="btn btn-danger btn-lg mx-3" onclick="cancelUpdate()" type="button">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div class="">
+    {% if not orders.completed %}
+      {% if user.is_superuser %}
+        <button id="{{orders.ref_code}}-btn" completed="{{ orders.completed }}" class="btn btn-primary btn-lg delivered-btn" type="button" onclick="list_delivered('{{ orders.ref_code }}')" name="button">Delivered</button>
+      {% endif %}
+      {% if user == orders.Person %}
+          <button id="update-btn" class="btn btn-primary btn-lg" onclick="updateQuantity()" type="button">Update</button>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}

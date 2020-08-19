@@ -14,8 +14,38 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
     <script type = "text/JavaScript">
-            function AutoRefresh( t ) {
-               setTimeout("location.reload(true);", t);
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            const csrftoken = getCookie('csrftoken');
+
+            function list_delivered(item_code){
+              console.log(item_code);
+              $.ajax({
+                type: "GET",
+                url: "{% url 'orders-request-delivered' %}",
+                data: {'data': item_code},
+                dataType: 'json',
+                success: function (data){
+                  if (data.delivered_msg == 'success'){
+                    console.log('received');
+                    window.location.reload();
+                  }
+                }
+
+              });
             }
     </script>
 
@@ -59,11 +89,13 @@
               </li>
               {% if user.is_superuser %}
               <li class="nav-item dropdown">
-                <a class="nav-link {% if url_name == 'admin-orders-request' %} active {% endif %} dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link {% if url_name == 'admin-orders' %} active {% elif url_name == 'admin-requests' %} active {% endif %} dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Admin
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{% url 'admin-orders-request' %}">Orders & Requests</a>
+                  <a class="dropdown-item" href="{% url 'admin-orders' %}">Orders</a>
+                  <a class="dropdown-item" href="{% url 'admin-requests' %}">Requests</a>
+                  <a class="dropdown-item" href="{% url 'admin:index' %}">Admin Page</a>
                 </div>
               </li>
                 {% endif %}
@@ -107,6 +139,7 @@
       <div class="container-fluid padding">
         <div class="row text-center">
           <div class="col-md-4">
+            <hr class="light">
             <h3>The Villa Store</h3>
             <hr class="light">
             <p></p>

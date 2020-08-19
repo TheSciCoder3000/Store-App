@@ -17,7 +17,7 @@
           {% for td in table_data %}
             <tr>
               <td>
-                <a href="{% url 'admin-store-detail' td.id %}">{{ td.Person }}</a>
+                <a href="{% url 'user-request-detail' td.id %}">{{ td.ref_code }}</a>
               </td>
               <td>{{ td.time_ordered }}</td>
               <td></td>

@@ -10,6 +10,10 @@ html, body{
   overflow-x: hidden;
 }
 
+.hidden{
+  display: none;
+}
+
 #store-body > div{
   width: 100vw
 }
@@ -53,6 +57,13 @@ hr.light{
   overflow: auto;
 }
 
+.ref-code-limit{
+  max-width: 40vw;
+}
+
+.overflow{
+  overflow-wrap: break-word;
+}
 
 .carousel-caption{
   top: 50%;
@@ -65,7 +76,6 @@ hr.light{
 }
 
 .order-settings{
-  display: none;
 }
 
 .btn-dark{

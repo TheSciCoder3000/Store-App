@@ -1,15 +1,15 @@
 {% extends "my_store/base.html" %}
-{% load my_store_tags %}
+{% load users_tag %}
 {% block content %}
 <div class="container">
   <div id="person-info">
-    <h1>{{ orders.Person }}</h1>
+    <h1>{{ requests.Person }}</h1>
     <div class="container-fluid">
-      <h4>Conatact Number: </h4><p>{{ orders.number }}</p>
+      <h4>Conatact Number: </h4><p>{{ requests.number }}</p>
     </div>
     <div class="container-fluid">
       <h4>Address</h4>
-      <p>{{ orders.address }}</p>
+      <p>{{ requests.address }}</p>
     </div>
   </div>
 
@@ -20,18 +20,18 @@
           <th>Item</th>
           <th>Amount</th>
           <th>Price</th>
+          <th>Total</th>
         </tr>
       </thead>
       <tbody>
-        {% for item in items %}
-          {% if item|is_order_avail:orders %}
+        {% for item in requests|request_by_user %}
             <tr>
-              <td>{{ item.title }}</td>
-              <td>{% get_order_counter item orders %}</td>
-              <td>{{ item.price }}</td>
+              <td>{{ item.item }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item|get_product_data }}</td>
+              <td>{{ item|get_item_total }}</td>
             </tr>
-            {% endif %}
-          {% endfor %}
+        {% endfor %}
       </tbody>
     </table>
   </div>

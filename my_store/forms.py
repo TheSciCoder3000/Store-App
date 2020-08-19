@@ -1,6 +1,7 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, modelformset_factory
 from django import forms
-from .models import Orders, Products, Request
+from .models import Orders, OrderItem, Request, RequestItem, Products
+
 
 class OrderForm(ModelForm):
     class Meta:
@@ -13,16 +14,19 @@ class OrderForm(ModelForm):
                                                   'class': 'message-form'})
         }
 
-        for item in Products.objects.all():
-            widgets[item.title] = forms.CheckboxInput(attrs={'onclick': "hide_me('{}')".format(item.title),
-                                                             'onload': "hide_me('{}')".format(item.title),
-                                                             'id': '{}-checkbox'.format(item.title)})
+class OrderItemForms(ModelForm):
+    class Meta:
+        model = OrderItem
+        fields = ['item', 'quantity']
+        widgets = {
+            'item': forms.TextInput(attrs={'class': 'hidden'}),
+            'quantity': forms.NumberInput(attrs={'class': 'hidden number-form'})
+        }
 
-            widgets[item.title+'_counter'] = forms.NumberInput(attrs={'class': 'number-form',
-                                                                      'step': '.01',
-                                                                      'id': 'form-{}-counter'.format(item.title),
-                                                                      'onkeyup': "check_price('{}',{}, {})".format(item.title, item.item_thresh, item.discount),})
-
+OrderItemFormset = modelformset_factory(OrderItem,
+                                        form=OrderItemForms,
+                                        fields=['item', 'quantity'],
+                                        extra=Products.objects.all().count())
 
 class RequestForm(ModelForm):
     class Meta:
@@ -35,12 +39,7 @@ class RequestForm(ModelForm):
                                                   'class': 'message-form'})
         }
 
-        for item in Products.objects.all():
-            widgets[item.title] = forms.CheckboxInput(attrs={'onclick': "hide_me('{}')".format(item.title),
-                                                             'onload': "hide_me('{}')".format(item.title),
-                                                             'id': '{}-checkbox'.format(item.title)})
-
-            widgets[item.title+'_counter'] = forms.NumberInput(attrs={'class': 'number-form',
-                                                                      'step': '.01',
-                                                                      'id': 'form-{}-counter'.format(item.title),
-                                                                      'onkeyup': "check_price('{}',{}, {})".format(item.title, item.item_thresh, item.discount),})
+class RequestItemForms(ModelForm):
+    class Meta:
+        model = RequestItem
+        fields = ['item', 'quantity']
