@@ -19,8 +19,10 @@
         <tbody class="refresh-table">
           {% for td in table_data %}
             <tr>
-              <td>
-                <a href="{% url 'user-order-detail' td.id %}">{{ td.ref_code }}</a>
+              <td class="ref-code-limit">
+                <p class="overflow">
+                  <a href="{% url 'user-order-detail' td.id %}">{{ td.ref_code }}</a>
+                </p>
               </td>
               <td>{{ td.Person }}</td>
               <td>

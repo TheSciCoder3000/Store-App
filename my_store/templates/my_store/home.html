@@ -14,9 +14,6 @@
       {% for image in home_images %}
         <div class="carousel-item {% if forloop.first %}active{% endif %}">
           <img class="d-block" src="{{ image.my_image.url }}">
-          {% if forloop.first %}
-
-            {% endif %}
         </div>
         {% endfor %}
         <div class="carousel-caption d-md-block">

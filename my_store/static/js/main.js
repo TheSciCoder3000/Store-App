@@ -1,7 +1,10 @@
 
-$('#prod_table').DataTable();
-$('#user-table').DataTable();
-$('#admin-table').DataTable();
+const addi = {
+  'scrollX': true
+}
+$('#prod_table').DataTable(addi);
+$('#user-table').DataTable(addi);
+$('#admin-table').DataTable(addi);
 
 var use_ajax = true;
 function deactivate_me(btn_id){

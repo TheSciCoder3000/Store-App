@@ -1,7 +1,4 @@
-html{
-  scroll-behavior: smooth;
-}
-
+/* || General Styles */
 html, body{
   width: 100%;
   height: 100%;
@@ -10,14 +7,28 @@ html, body{
   overflow-x: hidden;
 }
 
+.viewer-body{
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
 .hidden{
   display: none;
 }
 
-#store-body > div{
-  width: 100vw
+
+/* || Navbar Styles */
+.btn-dark{
+  border: 1px solid #525151;
 }
 
+#search_field{
+  margin-right: -73px;
+}
+
+
+
+/* || Footer Styles */
 footer{
   padding-top: 2vh;
   padding-bottom: 2vh;
@@ -29,6 +40,13 @@ hr.light{
   background-color: white;
 }
 
+
+/* || Home Styles */
+.h1{
+    color: white;
+    text-shadow: 3px 3px 6px black;
+}
+
 .carousel-inner{
   height: 70vh;
 }
@@ -37,67 +55,10 @@ hr.light{
   object-fit: contain;
 }
 
-.False-formatting{
-  color: red;
-}
-
-.True-formatting{
-  color: green;
-}
-
-.submitted{
-  display: none;
-  cursor: not-allowed;
-  pointer-events: none;
-  content: "Pls Wait"
-}
-
-.scrollable{
-  max-width: 100%;
-  overflow: auto;
-}
-
-.ref-code-limit{
-  max-width: 40vw;
-}
-
-.overflow{
-  overflow-wrap: break-word;
-}
-
 .carousel-caption{
   top: 50%;
   position: absolute;
   transform: translateY(-50%);
-}
-
-.show-border{
-  border: 2px solid green;
-}
-
-.order-settings{
-}
-
-.btn-dark{
-  border: 1px solid #525151;
-}
-
-.viewer-body{
-  background-color: #ffffff;
-  min-height: 100vh;
-}
-
-.news_panel{
-  background-color: #e8e8e8
-}
-
-.inner-viewer{
-  padding: 10%;
-}
-
-.item-viewer{
-  background-color: #ffffff;
-  border: 2px solid #cfcfcf;
 }
 
 .panel-header{
@@ -112,28 +73,26 @@ hr.light{
   border-bottom-left-radius: 25px;
 }
 
-.item-title{
-  font-size: 150%;
+
+/* || Store Styles */
+#store-body > div{
+  width: 100vw
 }
 
-.item-is-avail{
-  background-color: #0aff1b;
+.submitted{
+  display: none;
+  cursor: not-allowed;
+  pointer-events: none;
+  content: "Pls Wait"
 }
 
-.item-not-avail{
-  background-color: #ff4545;
+.inner-viewer{
+  padding: 10%;
 }
 
-.num-form-cont{
-  width: 10rem;
-}
-
-.number-form{
-  width: 100%;
-}
-
-#search_field{
-  margin-right: -73px;
+.item-viewer{
+  background-color: #ffffff;
+  border: 2px solid #cfcfcf;
 }
 
 #my_products{
@@ -142,26 +101,22 @@ hr.light{
   border-top: 3px solid #d6d6d6;
 }
 
-#prod_table_paginate > span > a{
+/* Tables */
+table{
+  width: 100% !important;
+}
+
+.dataTables_paginate > span > a{
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
 
-#prod_table_paginate > *{
+.dataTables_paginate > *{
   margin-left: 1rem;
   margin-right: 1rem;
 }
 
-#user-table_paginate > span > a{
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
-#user-table_paginate > *{
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-
+/* Checkbox and form */
 .checkbox-cont{
   display: flex;
   align-items: center;
@@ -201,16 +156,16 @@ hr.light{
   display: block;
 }
 
-.sp-head{
-  background-color: #0244bf;
-  border-top-right-radius: 25px;
-  border-top-left-radius: 25px;
+.number-form{
+  width: 100%;
 }
 
-.yow{
-  border-top: 3px solid #ffffff;
-  border-bottom: 3px solid #ffffff;
-  color: white;
+/* Side Panel */
+.sp-head{
+  background-color: #0244bf;
+  color: #ffffff;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
 }
 
 .sp-body{
@@ -223,27 +178,44 @@ hr.light{
   font-size: 1rem;
 }
 
-.welcome-message{
-  font-size: 6rem;
+
+/* || User & Admin Profiles Styles */
+.overflow{
+  overflow-wrap: break-word;
 }
 
-.signup-btn{
-
+.ref-code-limit{
+  max-width: 40vw;
 }
 
+.False-formatting{
+  color: red;
+}
+
+.True-formatting{
+  color: green;
+}
+
+
+/* || Unkown and searching */
 .message-form{
   width: 100%;
   height: auto;
 }
+
+.welcome-message{
+  font-size: 6rem;
+}
+
+
+
+/* || Responsive Styles */
 
 @media screen and (orientation:portrait){
   .carousel-item{
     height: 100%;
   }
 
-  .carousel-inner img{
-    
-  }
 }
 
 @media screen and (orientation:landscape){
@@ -254,11 +226,6 @@ hr.light{
   .carousel-inner img{
     width: 100%;
   }
-}
-
-.h1{
-    color: white;
-    text-shadow: 3px 3px 6px black;
 }
 
 /* XSmall */
@@ -291,11 +258,5 @@ hr.light{
 
 /* Large */
 @media (max-width: 1199px) {
-
-}
-
-
-
-@media only screen and (max-width: 767px) {
 
 }

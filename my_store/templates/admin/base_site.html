@@ -1,0 +1,21 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% block extrastyle %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/admin-style.css' %}">
+{% endblock %}
+
+{% block branding %}
+<div id="admin-navbar">
+  <h1 class="admin-nav">Admin</h1>
+
+  <ul class="admin-nav">
+    <li>
+      <a href="{% url 'store-home' %}">Home</a>
+    </li>
+    <li>
+      <a href="{% url 'store-store' %}">Store</a>
+    </li>
+  </ul>
+
+</div>
+{% endblock %}
