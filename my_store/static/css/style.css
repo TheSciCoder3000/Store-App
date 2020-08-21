@@ -179,6 +179,17 @@ table{
 }
 
 
+/* || Product Details Styles */
+.image-cont{
+  width: 50%;
+}
+
+.image-cont > img{
+  object-fit: contain;
+  width: 100%;
+}
+
+
 /* || User & Admin Profiles Styles */
 .overflow{
   overflow-wrap: break-word;

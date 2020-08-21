@@ -123,3 +123,8 @@ class RequestDetails(DetailView):
         context = super(OrderDetails, self).get_context_data(**kwargs)
         context['items'] = Products.objects.all()
         return context
+
+class ProductDetails(DetailView):
+    model = Products
+    template_name = "my_store/prod_details.html"
+    context_object_name = 'product'

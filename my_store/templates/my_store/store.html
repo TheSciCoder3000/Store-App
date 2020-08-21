@@ -52,7 +52,9 @@
                                     </div>
                                 </td>
                               {% endif %}
-                              <td>{{ item.title }}</td>
+                              <td>
+                                <a href="{% url 'product-detail' item.id %}">{{ item.title }}</a>
+                              </td>
                               <td id="{{ item.title }}-price">{{ item.price }}</td>
                               <td>{{ item.price_per }}</td>
                               <td>{{ item.item_count }}</td>
