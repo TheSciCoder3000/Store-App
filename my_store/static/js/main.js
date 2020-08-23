@@ -1,8 +1,11 @@
 
 const addi = {
-  'scrollX': true
+  'scrollX': true,
+  'order': [[1, "desc"]]
 }
-$('#prod_table').DataTable(addi);
+$('#prod_table').DataTable({
+  'scrollX': true
+});
 $('#user-table').DataTable(addi);
 $('#admin-table').DataTable(addi);
 
