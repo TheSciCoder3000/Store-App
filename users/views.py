@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserRegistrationForm, UserProfileForm
 from my_store.models import Orders, Request, Products, OrderItem
-from my_store.forms import OrderItemForms
+from my_store.forms import OrderItemForms, OrderForm
 from django.http import JsonResponse
 from django.forms.models import modelformset_factory
 
@@ -51,6 +51,10 @@ class OrderDetails(DetailView):
     def get_context_data(self, **kwargs):
         context = super(OrderDetails, self).get_context_data(**kwargs)
         context['items'] = Products.objects.all()
+
+        my_order = OrderForm(instance=self.get_object())
+        context['OrderForm'] = my_order
+
         order_Items = self.get_object().orderitem_set.all()
         context['order_items'] = order_Items
 
@@ -69,6 +73,15 @@ class OrderDetails(DetailView):
                                                   fields=['item', 'quantity'],
                                                   extra=0)
         formset = OrderDetailFormset(request.POST or None)
+        my_order = OrderForm(request.POST)
+
+        if my_order.is_valid():
+            user_order = self.get_object()
+            message = my_order.cleaned_data['add_message']
+            user_order.add_message = message
+            user_order.save()
+            print(message)
+
         for form in formset:
             instance = form.save(commit=False)
             instance.order = self.get_object()

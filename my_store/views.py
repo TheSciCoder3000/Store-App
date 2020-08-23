@@ -24,7 +24,7 @@ def store(request):
         })
 
     if request.method == 'POST':
-        orderlist_form = OrderForm(request.POST)
+        orderlist_form = OrderForm(request.POST, prefix='orders')
         formset = OrderItemFormset(request.POST)
         user = request.user
         order, created = Orders.objects.get_or_create(Person=user, completed=False)
@@ -32,6 +32,13 @@ def store(request):
             order.address = user.userprofile.Location
             order.number = user.userprofile.Contact_Number
             order.save()
+
+        if orderlist_form.is_valid():
+            add_mess = orderlist_form.cleaned_data['add_message']
+            if add_mess:
+                print('adding message')
+                order.add_message += '\n\n'+add_mess
+                order.save()
 
         if formset.is_valid():                                                  # If valid, create or update Order Items
             for form in formset:
@@ -51,7 +58,7 @@ def store(request):
             return redirect('store-store')
     else:
         formset = OrderItemFormset(queryset=OrderItem.objects.none())
-        orderlist_form = OrderForm()
+        orderlist_form = OrderForm(prefix='orders')
 
     context = {
         'title': 'Store',

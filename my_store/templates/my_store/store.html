@@ -66,6 +66,10 @@
 
               </table>
             </div>
+            <div class="order-add-request">
+              <h5>Any additional request or instructions?</h5>
+              {{ orderForm.add_message }}
+            </div>
 
             {% if user.is_authenticated %}
                 <button id="submit_ro" onclick="deactivate_me('#submit_ro')" class="btn btn-success btn-lg mx-5" type="submit">{{ btn_title }}</button>

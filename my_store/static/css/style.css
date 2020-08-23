@@ -207,6 +207,12 @@ table{
   color: green;
 }
 
+#order-details{
+  box-shadow: 3px 3px 5px 1px #454545;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
 
 /* || Unkown and searching */
 .message-form{

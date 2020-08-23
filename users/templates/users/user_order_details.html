@@ -18,12 +18,22 @@
     </div>
   </div>
 
-  <div class="container-fluid">
+  <div id="order-details" class="container-fluid">
     <form id="order-items-form" method="post">{% csrf_token %}
       <div class="another">
         {{ formset.management_form }}
       </div>
       <div class="scrollable">
+        <div id="message-cont" class="container-fluid">
+          <h4>Additional Request & Instructions</h4>
+          <div id="message-text">
+            <p>{{ orders.add_message|linebreaks }}</p>
+          </div>
+          <div id="message-form" class="hidden">
+            {{ OrderForm.add_message }}
+          </div>
+        </div>
+
         <table class="table table-striped table-bordered" id="admin-orders-table">
           <thead>
             <tr>

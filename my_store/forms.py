@@ -6,11 +6,9 @@ from .models import Orders, OrderItem, Request, RequestItem, Products
 class OrderForm(ModelForm):
     class Meta:
         model = Orders
-        exclude = ['Person', 'time_ordered',]
+        fields = ['add_message',]
         widgets = {
-            'address': forms.TextInput(attrs={'placeholder': 'add your Block Lot and Phase HERE'}),
-            'number': forms.NumberInput(attrs={'placeholder': 'Mobile Number'}),
-            'add_message': forms.TextInput(attrs={'placeholder': 'Put any additional request or info here.',
+            'add_message': forms.Textarea(attrs={'placeholder': 'Put any additional request or info here.',
                                                   'class': 'message-form'})
         }
 

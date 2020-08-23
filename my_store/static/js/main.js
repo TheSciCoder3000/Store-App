@@ -25,29 +25,40 @@ function deactivate_me(btn_id){
 }   //Deactivate the button to avoid double ordering
 
 function updateQuantity(){
+  var order_message = document.getElementById('message-text');
+  var order_form = document.getElementById('message-form');
   var quantityItems = document.querySelectorAll(".item-quantity");
   var quantityCounter = document.querySelectorAll(".item-quantity-counter > input[type='number']");
   var btn_id = document.getElementById("update-btn");
   var update_btns = document.getElementById("update-buttons");
+  var i = 0;
+
   for (i = 0; i < quantityItems.length; i++) {
-    if (quantityItems[i].classList.contains("hidden")){
-      quantityItems[i].classList.remove("hidden");
-      quantityCounter[i].style.display = "none";
-      btn_id.style.display = "block";
-    }else{
       quantityItems[i].classList.add("hidden");
       quantityCounter[i].style.display = "block";
-      btn_id.style.display = "none";
-      update_btns.classList.remove("hidden");
-    }
   }
-
+  order_message.classList.add("hidden");
+  order_form.classList.remove("hidden");
+  btn_id.classList.add("hidden");
+  update_btns.classList.remove("hidden");
 }
 
 function cancelUpdate(){
+  var quantityItems = document.querySelectorAll(".item-quantity");
+  var quantityCounter = document.querySelectorAll(".item-quantity-counter > input[type='number']");
   var update_btns = document.getElementById("update-buttons");
+  var update_btn = document.getElementById("update-btn");
+  var order_message = document.getElementById('message-text');
+  var order_form = document.getElementById('message-form');
+
+  for (i = 0; i < quantityItems.length; i++) {
+      quantityItems[i].classList.remove("hidden");
+      quantityCounter[i].style.display = "none";
+  }
+  order_message.classList.remove("hidden");
+  order_form.classList.add("hidden");
   update_btns.classList.add("hidden");
-  updateQuantity();
+  update_btn.classList.remove("hidden");
 }
 
 function hide_me(this_item, id){
