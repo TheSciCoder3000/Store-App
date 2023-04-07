@@ -1,22 +1,51 @@
 {% extends "my_store/base.html" %}
-
 {% block content %}
-  <div class="row">
-    <div class="">
+  <!-- Image Slider -->
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      {% for image in home_images %}
+        <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
+        {% endfor %}
+    </ol>
 
+    <!-- Images -->
+    <div class="carousel-inner inner-home">
+      {% for image in home_images %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <img class="d-block" src="{{ image.my_image.url }}">
+        </div>
+        {% endfor %}
+        <div class="carousel-caption d-md-block">
+          <p class="h1">Welcome to The Villa Store</p>
+          <p class="h4">check our products in the store section or Sign up now to order</p>
+          <a href="{% url 'store-store' %}" class="btn btn-outline-light btn-lg">Store</a>
+          <a href="{% url 'register' %}" class="btn btn-primary btn-lg">Sign Up</a>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+  <!-- Jumbotron -->
+  <div class="container-fluid">
+    <div class="row jumbotron">
+      <div class="col-12">
+        <p class="lead">Currently we only buy and sell new products every Saturday.
+                        If you are interested in any particular product that you would want us to sell
+                        just accomplish the request form in the <a href="{% url 'store-store' %}">store section</a>.
+        </p>
+      </div>
     </div>
   </div>
-  <h1>Store Home
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam interdum faucibus ipsum, in vestibulum mi gravida sed. Quisque aliquet ipsum sed ante gravida, mollis tincidunt tortor fermentum. Vivamus blandit quam in lorem interdum, id tincidunt purus scelerisque. Vestibulum bibendum magna ut massa cursus gravida. Nam sed nibh arcu. Suspendisse commodo tortor vel risus facilisis bibendum. Mauris mattis semper enim vel ultricies. Nulla interdum eros in arcu pulvinar, a maximus est luctus. Aenean risus est, accumsan et sapien sit amet, sodales pharetra mauris. Donec at nisl in metus vehicula sagittis. Nullam ligula dolor, molestie sed hendrerit id, rhoncus eget mauris. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-
-Praesent feugiat, lacus ut hendrerit aliquet, ex tortor gravida felis, eu tempus ante nibh sit amet leo. Vivamus eleifend lobortis nibh sed consequat. Nullam elementum tristique tellus. Vivamus accumsan risus ut odio molestie, at pharetra ligula ornare. Morbi porta ornare turpis, non sodales elit volutpat eu. Sed eu orci fringilla, auctor nisi in, porta odio. Maecenas sagittis magna vel ex blandit, vel mollis arcu scelerisque. Suspendisse at enim id metus pharetra mattis. Duis nec magna non mi mattis semper vel in nulla. Nam dui dolor, condimentum id sapien at, porta bibendum ex. Duis non dolor sollicitudin, egestas felis eu, egestas magna.
-
-Ut finibus mauris diam, tincidunt ornare magna commodo ut. Morbi quis pretium ipsum. Ut quis enim enim. Nam vitae viverra leo, ut lacinia dolor. Suspendisse potenti. Maecenas orci purus, rutrum nec ultrices eget, semper sed nibh. Sed venenatis sed orci eget venenatis.
-
-Morbi eget ligula imperdiet, vestibulum tellus a, lobortis nulla. Ut id sodales justo. Quisque et lectus sit amet dui vulputate laoreet a vitae risus. Donec auctor, ante sit amet tristique bibendum, mi ipsum sollicitudin leo, non suscipit felis purus in mauris. Etiam eros elit, vestibulum id ex sit amet, efficitur congue urna. Praesent dignissim mauris aliquet nulla posuere, non pulvinar velit consectetur. Nullam auctor luctus pulvinar. Sed sed porttitor libero. Vestibulum faucibus purus tincidunt fringilla scelerisque. Donec et libero a ligula elementum imperdiet a quis diam. In ut imperdiet tortor. Praesent semper tempus tristique. Donec cursus ornare ante, eu pellentesque urna placerat nec. Curabitur porta nunc non ligula vehicula, vestibulum efficitur magna scelerisque.
-
-Nam convallis quam luctus venenatis ullamcorper. Aliquam eu vehicula magna. Proin vitae ligula neque. Nullam vulputate sit amet nulla tempus finibus. Integer non libero maximus, tincidunt neque ac, ultrices est. Ut ornare maximus libero ac dignissim. Phasellus id fermentum nunc. Integer vitae quam neque. Duis risus magna, eleifend et nulla id, efficitur varius nunc. Praesent laoreet venenatis maximus. Proin mollis id tellus quis rhoncus. Sed lobortis sed ante vitae mollis. Duis ultricies ullamcorper fermentum. Pellentesque sagittis, tellus sed scelerisque sodales, nisl quam finibus mauris, in rutrum velit massa nec enim. Sed laoreet diam ac rutrum pellentesque.
-
-  </h1>
+  <h1>{{ request.url}}</h1>
 {% endblock content %}

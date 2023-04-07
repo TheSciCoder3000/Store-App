@@ -1,0 +1,47 @@
+{% extends "my_store/base.html" %}
+{% load my_store_tags %}
+{% load static %}
+{% block content %}
+  <div class="m-5">
+    <h1>Admin: {{ user.username }}</h1>
+
+    <div class="scrollable">
+      <table class="table table-striped table-bordered" id="admin-table">
+        <thead>
+          <tr>
+            <th>Reference Code</th>
+            <th>Owner</th>
+            <th>State</th>
+            <th>Date & Time</th>
+            <th>Item Count</th>
+          </tr>
+        </thead>
+        <tbody class="refresh-table">
+          {% for td in table_data %}
+            <tr>
+              <td class="ref-code-limit">
+                <p class="overflow">
+                  <a href="{% url 'user-order-detail' td.id %}">{{ td.ref_code }}</a>
+                </p>
+              </td>
+              <td>{{ td.Person }}</td>
+              <td>
+                {% if td.completed %}
+                <p class="True-formatting">Delivered</p>
+                {% else %}
+                <p class="False-formatting">Pending</p>
+                {% endif %}
+              </td>
+              <td>{{ td.time_ordered }}</td>
+              <td>{{ td|get_items_totals }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+        <script type="text/javascript" src="{% static 'js/refresh_admin.js' %}" defer>
+        </script>
+      </table>
+    </div>
+
+  </div>
+
+{% endblock content %}

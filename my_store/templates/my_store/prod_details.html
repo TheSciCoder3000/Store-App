@@ -1,0 +1,13 @@
+{% extends "my_store/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid m-5 px-3">
+  <h1 class="my-2">{{ product.title }}</h1>
+  <h5 class="my-2">Price: Php {{ product.price }}</h5>
+  {% if product.image %}
+    <div class="image-cont">
+      <img src="{{ product.image.url }}">
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
